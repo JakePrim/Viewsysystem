@@ -109,14 +109,14 @@ public class XHorizontalScrollView extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX(); //滑动的距离
-//                mVelocityTracker.computeCurrentVelocity(1000);
-//                float xVelocity = mVelocityTracker.getXVelocity();// 水平滑动的速度
-//                if (Math.abs(xVelocity) >= 50) { // 水平滑动速度大于 50
-//                    mChildIndex = xVelocity > 0 ? mChildIndex - 1 : mChildIndex + 1;
-//                } else {
-//                    mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;//
-//                }
-                mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;//
+                mVelocityTracker.computeCurrentVelocity(1000);
+                float xVelocity = mVelocityTracker.getXVelocity();// 水平滑动的速度
+                if (Math.abs(xVelocity) >= 50) { // 水平滑动速度大于 50
+                    mChildIndex = xVelocity > 0 ? mChildIndex - 1 : mChildIndex + 1;
+                } else {
+                    mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;//
+                }
+//                mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;//
                 mChildIndex = Math.max(0, Math.min(mChildIndex, mChildSize - 1));
                 int dx = mChildIndex * mChildWidth - scrollX;
                 smoothScrollBy(dx, 0);
